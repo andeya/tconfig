@@ -43,7 +43,7 @@ func TestYaml(t *testing.T) {
 	}
 	f.Close()
 	defer os.Remove("testyaml.conf")
-	yamlconf, err := config.NewConfig("yaml", "testyaml.conf")
+	yamlconf, err := tconfig.NewConfig("yaml", "testyaml.conf")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -73,10 +73,14 @@ func TestYaml(t *testing.T) {
 		t.Error(v)
 		t.Fatal(err)
 	}
-	if err = yamlconf.Set("name", "henrylee2cn"); err != nil {
+	if err = yamlconf.Set("name", "astaxie"); err != nil {
 		t.Fatal(err)
 	}
-	if yamlconf.String("name") != "henrylee2cn" {
+	if yamlconf.String("name") != "astaxie" {
 		t.Fatal("get name error")
+	}
+
+	if yamlconf.Strings("emptystrings") != nil {
+		t.Fatal("get emtpy strings error")
 	}
 }

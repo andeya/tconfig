@@ -46,7 +46,7 @@ func TestXML(t *testing.T) {
 	}
 	f.Close()
 	defer os.Remove("testxml.conf")
-	xmlconf, err := config.NewConfig("xml", "testxml.conf")
+	xmlconf, err := tconfig.NewConfig("xml", "testxml.conf")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -81,5 +81,8 @@ func TestXML(t *testing.T) {
 	}
 	if xmlconf.String("name") != "astaxie" {
 		t.Fatal("get name error")
+	}
+	if xmlconf.Strings("emptystrings") != nil {
+		t.Fatal("get emtpy strings error")
 	}
 }
