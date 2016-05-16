@@ -202,7 +202,8 @@ func (c *IniConfigContainer) MainKeys() []string {
 		a[i] = k
 		i++
 	}
-	return sort.Strings(a)
+	sort.Strings(a)
+	return a
 }
 
 func (c *IniConfigContainer) Sections() []string {
@@ -216,7 +217,8 @@ func (c *IniConfigContainer) Sections() []string {
 		a[i] = k
 		i++
 	}
-	return sort.Strings(a)
+	sort.Strings(a)
+	return a
 }
 
 func (c *IniConfigContainer) SectionKeys(section string) []string {
@@ -227,7 +229,8 @@ func (c *IniConfigContainer) SectionKeys(section string) []string {
 		a[i] = k
 		i++
 	}
-	return sort.Strings(a)
+	sort.Strings(a)
+	return a
 }
 
 // Bool returns the boolean value for a given key.
