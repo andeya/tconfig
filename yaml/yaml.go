@@ -231,9 +231,12 @@ func (c *ConfigContainer) DefaultStrings(key string, defaultval []string) []stri
 
 // GetSection returns map for the given section
 func (c *ConfigContainer) GetSection(section string) (map[string]string, error) {
-	v, ok := c.data[section]
-	if ok {
-		return v.(map[string]string), nil
+	if v, ok := c.data[section]; ok {
+		var r = make(map[string]string)
+		for kk, vv := range v.(map[string]interface{}) {
+			r[kk] = vv.(string)
+		}
+		return r, nil
 	}
 	return nil, errors.New("not exist setction")
 }
